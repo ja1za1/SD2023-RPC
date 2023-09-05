@@ -1,2 +1,29 @@
 # SD2023-RPC
-Repositório para atualização semanal do conteúdo da disciplina Sistemas Distribuídos
+
+Sistema RPC utlizando sockets TCP que a cada semana uma nova funcionalidade será implementada.
+
+# Atualizações
+
+## Semana 1
+
+Simples funções matématicas implementadas:
+
+- Soma
+- Subtração
+- Divisão
+- Multiplicação
+
+## Semana 2
+
+Mais operações e multiprocessamento implementado:
+
+- Função para verificar se um número é primo.
+- Função para mostrar números primos em um determinado range.
+- Adicionado multiprocessamento em função que verifica se uma quantidade determinada de números inteiros são primos para diminuir o tempo de execução.
+
+## Semana 3
+
+Simples cache implementado:
+
+- Dicionário que armazena o nome da operação e os valores inseridos pelo cliente na chamada de uma operação como chave. O valor é o resultado da operação.
+- Cache client-side.
