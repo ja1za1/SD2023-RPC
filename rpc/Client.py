@@ -3,11 +3,9 @@ import json
 
 from rpc.Cache import Cache
 
-BUFFER_SIZE = 1024
+BUFFER_SIZE = 4096
 
 class Client:
-
-    
 
     def __init__(self, ip, porta) -> None:
         self.ip = ip
@@ -28,7 +26,7 @@ class Client:
         self._socket.send(dadosOperacao.encode())
 
     def __obter_resposta_servidor(self, dadosOperacao):
-        resposta_servidor = b""
+        resposta_servidor = bytearray()
 
         while True:
             data = self._socket.recv(BUFFER_SIZE)

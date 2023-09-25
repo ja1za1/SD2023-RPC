@@ -77,7 +77,6 @@ class Operacoes:
         noticias = []
         urls = []
         
-        
         for i in range(ITERACOES_SCRAPPING):
             urls.append(f'https://www.ifsudestemg.edu.br/noticias/barbacena/?b_start:int={i * QUANTIDADE_NOTICIAS_PAGINA}')
             
@@ -85,7 +84,7 @@ class Operacoes:
             for lista_noticia in executor.map(get_links, urls):
                 if lista_noticia:
                     noticias += lista_noticia
-
+                    
         return noticias[0:QUANTIDADE_NOTICIAS]
 
 

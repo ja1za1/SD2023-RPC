@@ -5,7 +5,7 @@ import json
 from rpc.Operacoes import Operacoes as op
 
 class Server:
-    BUFFER_SIZE = 1024
+    BUFFER_SIZE = 4096
     OPERACOES = {
         'soma' : op.soma,
         'sub' : op.subtracao,
@@ -51,6 +51,7 @@ class Server:
             dadosOperacao = conexaoCliente.recv(self.BUFFER_SIZE).decode()
             if not dadosOperacao:
                 break
+            
             operacao = self.__obter_nome_operacao(dadosOperacao)
             parametros = self.__obter_parametros_operacao(dadosOperacao)
 
