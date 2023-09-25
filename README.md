@@ -44,3 +44,10 @@ Operação de webscrapping implementada:
 - Busca uma quantidade x de notícias no site do https://www.ifsudestemg.edu.br/.
 - Utiliza o paralelismo ao realizar o webscrapping.
 - Problema com o cache: caso usuário busque 3 notícias e depois busque mais 2, o cache não retornará essas 2 notícias mesmo já tendo elas salvas em outra operação.
+
+## Semana 6
+
+Prolema com o cache resolvido:
+
+- O cache consegue entender que caso ao realizar uma chamada a função de buscar notícias, o número de notícias solicitado for menor do que a quantidade de notícias que já estão em cache, deve-se retornar as notícias já armazenadas e não criar outra entrada no cache.
+- Adicionada constante que diz qual o tempo limite as notícias podem ficar em cache. Caso esse tempo seja passado e uma chamada a função de buscar notícias for feita, todas as notícias que estavam em cache são removidas.
