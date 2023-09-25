@@ -21,7 +21,7 @@ class Cache:
             cache_disco = pickle.load(open(self.NOME_ARQUIVO_CACHE, 'rb'))
         except:
             cache_disco = {}
-
+            
         return cache_disco
     
     def __carregar_lista_operacoes(self):

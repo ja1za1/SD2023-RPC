@@ -1,6 +1,7 @@
 
 import multiprocessing as mp
 import os
+import concurrent.futures
 
 from functools import reduce
 from rpc.Webscrapping import get_links
@@ -50,20 +51,42 @@ class Operacoes:
         inicio = int(rangePrimos[0])
         fim = int(rangePrimos[1])
         lista_numeros = range(inicio, fim+1)
+        numeros_primos = []
+        for numero in lista_numeros:
+            if(Operacoes.numero_primo(numero)):
+                numeros_primos.append(numero)
+        return numeros_primos
+    
+    
+    @staticmethod
+    def primos_range_mp(rangePrimos: list = [0]):
+        inicio = int(rangePrimos[0])
+        fim = int(rangePrimos[1])
+        lista_numeros = range(inicio, fim+1)
         with mp.Pool(processes=os.cpu_count()) as pool:
                 resultado = pool.map(Operacoes.numero_primo, lista_numeros)
                 numeros_primos = [number[0] for number in zip(lista_numeros, resultado) if number[1]]
         return numeros_primos
 
-    # @staticmethod
-    # def buscar_noticias_barbacena(qtdNoticias: list = [0]):
-    #     QUANTIDADE_NOTICIAS = int(qtdNoticias[0])
-    #     QUANTIDADE_NOTICIAS_PAGINA = 20
-    #     ITERACOES_SCRAPPING = ceil(QUANTIDADE_NOTICIAS / QUANTIDADE_NOTICIAS_PAGINA)
-    #     links = []
-    #     for i in range(ITERACOES_SCRAPPING):
-    #         links += get_links(f'https://www.ifsudestemg.edu.br/noticias/barbacena/?b_start:int={i * QUANTIDADE_NOTICIAS_PAGINA}')
-    #     return links[0:QUANTIDADE_NOTICIAS]
+    @staticmethod
+    def buscar_noticias_barbacena(qtdNoticias: list = [0]):
+        QUANTIDADE_NOTICIAS = int(qtdNoticias[0])
+        QUANTIDADE_NOTICIAS_PAGINA = 20
+        ITERACOES_SCRAPPING = ceil(QUANTIDADE_NOTICIAS / QUANTIDADE_NOTICIAS_PAGINA)
+        
+        noticias = []
+        urls = []
+        
+        
+        for i in range(ITERACOES_SCRAPPING):
+            urls.append(f'https://www.ifsudestemg.edu.br/noticias/barbacena/?b_start:int={i * QUANTIDADE_NOTICIAS_PAGINA}')
+            
+        with concurrent.futures.ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
+            for lista_noticia in executor.map(get_links, urls):
+                if lista_noticia:
+                    noticias += lista_noticia
+
+        return noticias[0:QUANTIDADE_NOTICIAS]
 
 
 

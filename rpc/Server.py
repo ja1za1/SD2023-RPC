@@ -12,7 +12,8 @@ class Server:
         'mult' : op.multiplicacao,
         'div' : op.divisao,
         'num_primo' : op.numeros_primos,
-        'mp_num_primo' : op.primos_range,
+        'primos_range_mp' : op.primos_range_mp,
+        'primos_range' : op.primos_range,
         'news' : op.buscar_noticias_barbacena
 
     }
@@ -52,12 +53,9 @@ class Server:
                 break
             operacao = self.__obter_nome_operacao(dadosOperacao)
             parametros = self.__obter_parametros_operacao(dadosOperacao)
-            print(operacao)
-            print(parametros)
 
             # Chamada da função através da chave do dicionário.
             resultado = self.OPERACOES[operacao](parametros)
-            print(resultado)
             self.__enviar_resultado_cliente(conexaoCliente,resultado) 
     
     def __enviar_resultado_cliente(self, conexaoCliente, resultado) -> None:

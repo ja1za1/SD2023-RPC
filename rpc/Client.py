@@ -1,7 +1,6 @@
 import socket
 import json
 
-from typing import List
 from rpc.Cache import Cache
 
 BUFFER_SIZE = 1024
@@ -107,15 +106,7 @@ class Client:
             return self.__obter_resposta_servidor(dadosOperacao)
     
     def show_primes_in_range(self, inicio, fim):
-        primos = []
-        for i in range(inicio,fim):
-            primo = self.is_prime(i)
-            if primo[0] == True:
-                primos.append(i)
-        return primos
-    
-    def mp_show_primes_in_range(self, inicio, fim):
-        dadosOperacao = 'mp_num_primo'
+        dadosOperacao = 'primos_range'
         if not isinstance(inicio, int) or not isinstance(fim, int):
             raise TypeError("Número deve ser inteiro")
         else:
@@ -124,15 +115,27 @@ class Client:
             if resposta_operacao != None:
                 return resposta_operacao
             else:
-                print("aqui")
+                self.__enviar_operacao_servidor(dadosOperacao)
+                return self.__obter_resposta_servidor(dadosOperacao)
+    
+    def show_primes_in_range_mp(self, inicio, fim):
+        dadosOperacao = 'primos_range_mp'
+        if not isinstance(inicio, int) or not isinstance(fim, int):
+            raise TypeError("Número deve ser inteiro")
+        else:
+            dadosOperacao += f' {inicio} {fim}'
+            resposta_operacao = self.__verificar_resposta_em_cache(dadosOperacao)
+            if resposta_operacao != None:
+                return resposta_operacao
+            else:
                 self.__enviar_operacao_servidor(dadosOperacao)
                 return self.__obter_resposta_servidor(dadosOperacao)
             
-     # def last_news_if_barbacena(self, qtd_noticias : int) -> List:
-    #     dadosOperacao = f'news {qtd_noticias}'
-    #     resposta_operacao = self.__verificar_resposta_em_cache(dadosOperacao)
-    #     if resposta_operacao != None:
-    #         return resposta_operacao
-    #     else:
-    #         self.__enviar_operacao_servidor(dadosOperacao)
-    #         return self.__obter_resposta_servidor(dadosOperacao)
+    def last_news_if_barbacena(self, qtd_noticias : int) -> list:
+        dadosOperacao = f'news {qtd_noticias}'
+        resposta_operacao = self.__verificar_resposta_em_cache(dadosOperacao)
+        if resposta_operacao != None:
+            return resposta_operacao
+        else:
+            self.__enviar_operacao_servidor(dadosOperacao)
+            return self.__obter_resposta_servidor(dadosOperacao)
