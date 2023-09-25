@@ -23,7 +23,16 @@ Mais operações e multiprocessamento implementado:
 
 ## Semana 3
 
-Simples cache implementado:
+Simples cache em memória implementado:
 
 - Dicionário que armazena o nome da operação e os valores inseridos pelo cliente na chamada de uma operação como chave. O valor é o resultado da operação.
 - Cache client-side.
+
+## Semana 4
+
+Cache aprimorado:
+
+- O cache funciona em memória e em disco.
+- Possuí uma constante para sincronizar o cache em memória com o cache em disco de acordo com um determinado tempo (em segundos).
+- Possuí uma constante para determinar o número máximo de operações em cache. Ao chegar no número máximo de operações, as mais antigas serão descartadas.
+- Sempre ao finalizar o programa, o cache é escrito em disco.
