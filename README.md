@@ -36,3 +36,11 @@ Cache aprimorado:
 - Possuí uma constante para sincronizar o cache em memória com o cache em disco de acordo com um determinado tempo (em segundos).
 - Possuí uma constante para determinar o número máximo de operações em cache. Ao chegar no número máximo de operações, as mais antigas serão descartadas.
 - Sempre ao finalizar o programa, o cache é escrito em disco.
+
+## Semana 5
+
+Operação de webscrapping implementada:
+
+- Busca uma quantidade x de notícias no site do https://www.ifsudestemg.edu.br/.
+- Utiliza o paralelismo ao realizar o webscrapping.
+- Problema com o cache: caso usuário busque 3 notícias e depois busque mais 2, o cache não retornará essas 2 notícias mesmo já tendo elas salvas em outra operação.
