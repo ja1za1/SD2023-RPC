@@ -7,16 +7,17 @@ from rpc.Operacoes import Operacoes as op
 class Server:
     BUFFER_SIZE = 4096
     OPERACOES = {
-        'soma' : op.soma,
+        'sum' : op.soma,
         'sub' : op.subtracao,
         'mult' : op.multiplicacao,
         'div' : op.divisao,
-        'num_primo' : op.numeros_primos,
-        'primos_range_mp' : op.primos_range_mp,
-        'primos_range' : op.primos_range,
-        'news' : op.buscar_noticias_barbacena
+        'is_prime' : op.numeros_primos,
+        'show_primes_in_range' : op.primos_range,
+        'show_primes_in_range_mp' : op.primos_range_mp,
+        'last_news_if_barbacena' : op.buscar_noticias_barbacena
 
     }
+ 
 
     def __init__(self, ip, porta) -> None:
         self.ip = ip

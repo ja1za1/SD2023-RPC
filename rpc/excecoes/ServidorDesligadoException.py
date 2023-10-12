@@ -1,0 +1,2 @@
+class ServidorDesligadoException(Exception):
+    pass

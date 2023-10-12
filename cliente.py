@@ -1,21 +1,20 @@
-from rpc.Client import Client
+from rpc.cliente.Client import Client
 
 
 def main():
-    client = Client('localhost', 45000)
-
-    print(client.soma(10, 5))
-    print(client.soma(19.2, 15.3))
-    print(client.sub(7.3, 5.3))
-    print(client.mult(7,2,2))
-    print(client.div(30,2,5))
-    print(client.is_prime(1,2,3,4,5))
-    print(client.is_prime(7))
-    # print(client.show_primes_in_range_mp(1, 50))
+    client = Client('localhost', 38500)
+    # print(client.sum(19.2, 15.3))
+    # print(client.sub(7.3, 5.3))
+    # print(client.mult(7,2,25))
+    # print(client.div(30,2,5))
+    # print(client.is_prime(1,2,3,4,5))
+    # print(client.is_prime(7))
+    print(client.show_primes_in_range_mp(1, 50))
     # print(client.show_primes_in_range(1, 1000))
     # print(client.show_primes_in_range(1, 1000))
     # print(client.is_prime(1))
-    print(client.last_news_if_barbacena(3))
+    # print(client.last_news_if_barbacena(1))
+    print(client.last_news_if_barbacena(20))
     # print(client.last_news_if_barbacena(5)[0])
     # print(client.soma(100000, 100000))
     # time.sleep(3)

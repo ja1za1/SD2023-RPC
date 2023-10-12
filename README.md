@@ -51,3 +51,17 @@ Prolema com o cache resolvido:
 
 - O cache consegue entender que caso ao realizar uma chamada a função de buscar notícias, o número de notícias solicitado for menor do que a quantidade de notícias que já estão em cache, deve-se retornar as notícias já armazenadas e não criar outra entrada no cache.
 - Adicionada constante que diz qual o tempo limite as notícias podem ficar em cache. Caso esse tempo seja passado e uma chamada a função de buscar notícias for feita, todas as notícias que estavam em cache são removidas.
+
+## Semana 7 
+
+Nova arquitetura de comunicação implementada:
+
+- Servidor de nomes adicionado. Ele é responsável por dizer quais são os ips e portas dos servidores que contêm a operação que o usuário solicitou.
+
+- A consulta dos servidores é feita do cliente para o servidor de nomes via UDP.
+
+- O cliente escolhe aleatoriamente dentre os servidores retornados pelo servidor de nomes em qual irá se conectar.
+
+- A conexão entre o cliente e o servidor contendo a operação do usuário é via TCP
+
+- Essa arquitetura possibilita a distribuição dos servidores de operações.

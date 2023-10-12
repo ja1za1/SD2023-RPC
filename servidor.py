@@ -1,4 +1,13 @@
-from rpc.Server import Server
+from rpc.servidores.Server import Server
 
-server = Server('localhost', 45000)
-server.iniciar()
+
+def main():
+    server = Server('localhost', 45000)
+    server.iniciar()
+
+
+
+
+
+if __name__ == '__main__':
+    main()

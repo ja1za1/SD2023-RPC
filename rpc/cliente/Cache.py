@@ -65,7 +65,7 @@ class Cache:
             self.__deletar_dado_cache(operacao_mais_antiga)
             
         nome_operacao_inserir, *parametros_operacao_inserir= operacao.split(" ")
-        if(nome_operacao_inserir == 'news'):
+        if(nome_operacao_inserir == 'last_news_if_barbacena'):
             for operacao_armazenada in self.__lista_operacoes:
                 nome_operacao_armazenada, *parametros_operacao_armazenada = operacao_armazenada.split(" ")
                 if nome_operacao_armazenada == nome_operacao_inserir:
@@ -82,7 +82,7 @@ class Cache:
     def armazenar_dados_cache(self, operacao, resultado):
         self.__inserir_dados_lista_operacoes(operacao)
         nome_operacao = operacao.split(" ")[0]
-        if nome_operacao == 'news':
+        if nome_operacao == 'last_news_if_barbacena':
             self.__cache['ultima_atualizacao'] = datetime.now().timestamp()
         self.__cache[operacao] = resultado
         self.__verificar_tempo_sincronizacao_cache()
@@ -99,10 +99,11 @@ class Cache:
 
     def obter_dados_em_cache(self, operacao):
         nome_operacao, *parametros_operacao = operacao.split(" ")
-        if nome_operacao == 'news':
+        if nome_operacao == 'last_news_if_barbacena':
             if (datetime.now().timestamp() - self.__horario_ultima_atualizacao) >= self.TEMPO_ATUALIZACAO_CACHE_NOTICIAS:
                 self.__deletar_todas_operacoes_cache(nome_operacao)
                 self.__deletar_todas_operacoes_lista(nome_operacao)
+                print("excedeu tempo")
                 return None
             for operacao_armazenada in self.__lista_operacoes:
                 nome_operacao_armazenada, *parametro_operacao_armazenada = operacao_armazenada.split(" ")
@@ -111,10 +112,13 @@ class Cache:
                     break
 
             if operacao in self.__cache:
+                print("pegou cache")
                 return self.__cache[operacao][:int(parametros_operacao[0])]
         elif operacao in self.__cache:
+            print("pegou do cache op normal")
             return self.__cache[operacao]
         
+        print("n pegou do cache")
         return None
         
 
