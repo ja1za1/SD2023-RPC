@@ -60,7 +60,7 @@ Nova arquitetura de comunicação implementada:
 
 - A consulta dos servidores é feita do cliente para o servidor de nomes via UDP.
 
-- O cliente escolhe aleatoriamente dentre os servidores retornados pelo servidor de nomes em qual irá se conectar.
+- O cliente escolhe aleatoriamente dentre os servidores retornados pelo servidor de nomes em qual servidor irá se conectar.
 
 - A conexão entre o cliente e o servidor contendo a operação do usuário é via TCP
 
