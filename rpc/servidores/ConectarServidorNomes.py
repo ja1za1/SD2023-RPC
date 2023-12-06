@@ -13,7 +13,6 @@ class ConectarServidorNomes:
         self.__socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         
 
-
     def obter_nome_servidor(self, nome_operacao):
         return self.__obter_endereco_servidor_nomes(nome_operacao)
 

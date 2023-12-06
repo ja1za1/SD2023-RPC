@@ -2,13 +2,15 @@ import socket
 import json
 import time
 import inspect
+import re
+import ssl
 
 from random import randint
 from rpc.cliente.Cache import Cache
 from rpc.servidores.ConectarServidorNomes import ConectarServidorNomes
 from rpc.excecoes.ServidorDesligadoException import ServidorDesligadoException 
 
-BUFFER_SIZE = 10000
+BUFFER_SIZE = 4096
 
 class Client:
 
@@ -22,9 +24,13 @@ class Client:
         self.__cache.escrever_cache_disco()
         self.__cache.escrever_lista_operacoes_disco()
         
-    def __conectar_servidor(self,ip, porta) -> socket.socket:
+    def __conectar_servidor(self,ip, porta) -> ssl.SSLSocket:
         try:
-            socketCliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.SSL_CONTEXT = ssl.create_default_context()
+            self.SSL_CONTEXT.load_verify_locations("./ssl/device.crt")
+            self.SSL_CONTEXT.check_hostname = False
+            self.SSL_CONTEXT.verify_mode = ssl.CERT_NONE
+            socketCliente = self.SSL_CONTEXT.wrap_socket(socket.socket(socket.AF_INET, socket.SOCK_STREAM), server_hostname=ip)
             socketCliente.connect((ip,porta))
             return socketCliente
         except socket.timeout:
@@ -76,6 +82,7 @@ class Client:
     def __realizar_operacao(self, parametros):
         nome_operacao = inspect.stack()[1].function
         operacao = f'{nome_operacao} {" ".join(map(str, parametros))}'
+        print(operacao)
         resposta_operacao = self.__verificar_resposta_em_cache(operacao)
         if(resposta_operacao != None):
             return resposta_operacao
@@ -107,3 +114,7 @@ class Client:
             
     def last_news_if_barbacena(self, qtd_noticias : int) -> list:
         return self.__realizar_operacao((qtd_noticias,))
+    
+    def validate_cpf(self, cpf : str):
+        return self.__realizar_operacao((cpf,))
+    
