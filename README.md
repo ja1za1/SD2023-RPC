@@ -65,3 +65,16 @@ Nova arquitetura de comunicação implementada:
 - A conexão entre o cliente e o servidor contendo a operação do usuário é via TCP
 
 - Essa arquitetura possibilita a distribuição dos servidores de operações.
+
+
+## Semana 8
+
+Adicionada conexão segura, nova operação e logs:
+
+- Tanto o servidor quanto o cliente utilizam sockets seguros (trocam mensagens criptografadas) para se comunicarem, adicionando uma camada a mais de segurança.
+
+- A função `valida_CPF(str:cpf) -> bool` foi adicionada e retorna apenas se um cpf é válido ou não.
+
+- Agora cada operação realizada pelo cliente é inserida em um arquivo de log no servidor.
+
+- Geração de gráficos para analisar os logs: [Ver exemplos de análises](https://colab.research.google.com/drive/1nm4EKF57k5rEnJqQwo5xSeJ_isWTjbCo?usp=sharing)
