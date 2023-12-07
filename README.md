@@ -2,6 +2,8 @@
 
 Sistema RPC utlizando sockets TCP que a cada semana uma nova funcionalidade será implementada.
 
+<img src="/assets/fotoapp.png">
+
 # Atualizações
 
 ## Semana 1
@@ -87,3 +89,7 @@ Adicionada conexão segura, nova operação e logs:
 - Agora cada operação realizada pelo cliente é inserida em um arquivo de log no servidor.
 
 - Geração de gráficos para analisar os logs: [Ver exemplos de análises](https://colab.research.google.com/drive/1nm4EKF57k5rEnJqQwo5xSeJ_isWTjbCo?usp=sharing)
+
+## Semana 9
+
+Adicionado interface gráfica na parte do cliente
