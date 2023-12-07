@@ -2,7 +2,6 @@ import socket
 import json
 import time
 import inspect
-import re
 import ssl
 
 from random import randint

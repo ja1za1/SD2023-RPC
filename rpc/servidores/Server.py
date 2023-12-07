@@ -2,7 +2,6 @@ import socket
 import threading
 import json
 import datetime
-import os
 import ssl
 
 from rpc.Operacoes import Operacoes as op
