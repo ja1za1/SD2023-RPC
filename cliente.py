@@ -309,14 +309,24 @@ def exibir_resultado_primes_in_range(resultado, input1: Entry, input2: Entry, la
     input2.delete(0, END)
 
 def exibir_resultado_last_news(resultado, input: Entry, label_resultado: Label):
-    noticias = ['- ' + noticia for noticia in resultado]
-    resultado = "\n".join(noticias)
+    noticias = [ f'{indice+1} - {noticia}' for indice, noticia in enumerate(resultado)]
+    resultado = "\n\n".join(noticias)
     
     label_resultado.config(text="")
     janela_resultado = Toplevel()
     janela_resultado.title('Resultado')
+
+
     Label(janela_resultado, text=f"Notícias encontradas: ",font=("Roboto", 12, "bold"), anchor='w').pack()
-    Label(janela_resultado, text=resultado, wraplength=500, font=("Roboto", 12,)).pack()
+    scrollbar = Scrollbar(janela_resultado, orient='vertical')
+    scrollbar.pack(side=RIGHT, fill=Y)
+
+    text_resultado = Text(janela_resultado, font=("Roboto", 12,), yscrollcommand=scrollbar.set)
+    text_resultado.insert(END,resultado)
+
+    scrollbar.config(command=text_resultado.yview)
+    text_resultado.pack()
+    
     input.delete(0, END)
 
 
